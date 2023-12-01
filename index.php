@@ -1,4 +1,3 @@
-
 <?php
 require_once('includes/config.php');
 $queryFilms = "SELECT * FROM Films ORDER BY releaseDate DESC LIMIT 0,4";
@@ -33,7 +32,7 @@ include("includes/header.php");
       while ($obj = $resultFilms -> fetch_object()){
         echo "<div>";
         echo "<div>";
-        echo "<img src=\"images/{%obj->filmImage}\" alt=\"{obj->filmTitle}\">";
+        echo "<img src=\"images/{$obj->filmImage}\" alt=\"{$obj->filmTitle}\">";
         echo "</div>";
         echo "<h3>{$obj->filmTitle}</h3>";
         echo "</div>";
