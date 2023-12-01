@@ -27,17 +27,19 @@ include("includes/header.php");
         <h2>Banner</h2>
       </div>
       <section class="homePage">
-		<!-- Featured Films Here -->
-    <?php
-      while ($obj = $resultFilms -> fetch_object()){
-        echo "<div>";
-        echo "<div>";
-        echo "<img src=\"images/{$obj->filmImage}\" alt=\"{$obj->filmTitle}\">";
-        echo "</div>";
-        echo "<h3>{$obj->filmTitle}</h3>";
-        echo "</div>";
-      }
-    ?>
+        <!-- Featured Films Here -->
+        <?php
+          while ($obj = $resultFilms -> fetch_object()){
+            echo "<div>";
+            echo "<a href=\"film-details.php?filmID={$obj->filmID}\">";
+            echo "<div>";
+            echo "<img src=\"images/{$obj->filmImage}\" alt=\"{$obj->filmTitle}\">";
+            echo "</div>";
+            echo "<h3>{$obj->filmTitle}</h3>";
+            echo "</a>";
+            echo "</div>";
+          }
+        ?>
       </section>
 		</main>
     </div>
