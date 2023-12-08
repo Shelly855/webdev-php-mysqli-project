@@ -4,6 +4,7 @@ require_once("includes/config.php");
 $getFilmID = $_GET["filmID"];
 $stmt = $mysqli->prepare( "SELECT * FROM Films WHERE filmID = ?" );
 $stmt->bind_param( 'i', $getFilmID );
+$getFilmID = i$_GET['filmID']??null;
 $stmt->execute();
 $result = $stmt->get_result();
 $obj = $result->fetch_object();
@@ -14,7 +15,7 @@ $obj = $result->fetch_object();
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Film Title Here</title>
+<title><?php echo $obj->filmTitle; ?></title>
 <link rel="stylesheet" href="css/mobile.css" />
 <link
       rel="stylesheet"
@@ -40,6 +41,7 @@ include("includes/header.php");
         echo "</div>";
         echo "<div>";
         echo "<p>{$obj->filmDescription}</p>";
+        echo "<p>{$obj->filmCertificate}</p>";
         echo "</div>";
         echo "</div>";
         ?>

@@ -1,3 +1,18 @@
+<?php,
+require_once("includes/config.php");
+$searchQuery = $_GET['q']??null;
+if ( is_null($searchQuery) || empty($searchQuery)){
+  $validSearch = false;
+}else{
+  $validSearch = true;
+  $searchQuery = "%" . $searchQuery . "%";
+}
+$stmt = $mysqli->prepare("SELECT * FROM Films WHERE filmTitle LIKE ?");
+$stmt->bind_param('s', $searchQuery);
+$stmt->execute();
+$result = $stmt->get_result();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +39,7 @@ include("includes/header.php");
     <section class="twoColumn">
       <div>
         <div class="searchForm">
-          <form>
+          <form method="get" action="search.php">
             <div>
               <label for="q">Search:</label>
               <input type="text" name="q" />
@@ -35,6 +50,9 @@ include("includes/header.php");
           </form>
         </div>
         <!-- Search Results Here -->
+        <?php
+        echo $_GET["q"];
+        ?>
       </div>
 <div class="sideBar">
         <h3>Featured Film</h3>
