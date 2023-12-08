@@ -35,6 +35,7 @@ include("includes/header.php");
             echo "<div>";
             echo "<img src=\"images/{$obj->filmImage}\" alt=\"{$obj->filmTitle}\">";
             echo "</div>";
+            echo "<p>{$obj->filmDescription}</p>";
             echo "<h3>{$obj->filmTitle}</h3>";
             echo "</a>";
             echo "</div>";
