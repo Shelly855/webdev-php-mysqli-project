@@ -4,7 +4,7 @@ require_once("includes/config.php");
 $getFilmID = $_GET["filmID"];
 $stmt = $mysqli->prepare( "SELECT * FROM Films WHERE filmID = ?" );
 $stmt->bind_param( 'i', $getFilmID );
-$getFilmID = i$_GET['filmID']??null;
+$getFilmID = $_GET['filmID']??null;
 $stmt->execute();
 $result = $stmt->get_result();
 $obj = $result->fetch_object();

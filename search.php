@@ -1,16 +1,15 @@
-<?php,
+<?php
 require_once("includes/config.php");
-$searchQuery = $_GET['q']??null;
-if ( is_null($searchQuery) || empty($searchQuery)){
+$searchQuery = $_GET[ 'q' ] ?? null;
+if ( is_null( $searchQuery ) || empty( $searchQuery)){
   $validSearch = false;
 }else{
   $validSearch = true;
   $searchQuery = "%" . $searchQuery . "%";
-}
-$stmt = $mysqli->prepare("SELECT * FROM Films WHERE filmTitle LIKE ?");
-$stmt->bind_param('s', $searchQuery);
-$stmt->execute();
-$result = $stmt->get_result();
+  $stmt = $mysqli->prepare("SELECT * FROM Films WHERE filmTitle LIKE ?");
+  $stmt->bind_param( 's', $searchQuery );
+  $stmt->execute();
+  $result = $stmt->get_result();
 }
 ?>
 <!DOCTYPE html>
@@ -50,9 +49,17 @@ include("includes/header.php");
           </form>
         </div>
         <!-- Search Results Here -->
-        <?php
-        echo $_GET["q"];
-        ?>
+          <?php
+          if ( $validSearch ){
+            echo "<p>Your search found {$result->num_rows} result(s)";
+            while ( $obj = $result->fetch_object()){
+              echo "<h3>{$obj->filmTitle}</h3>";
+              echo "<p><a href=\"film-details.php?filmID={$obj->filmID}\">More Details</a></p>";
+            }
+          }else{
+            echo "<p>Search for a film.</p>";
+          }
+          ?>
       </div>
 <div class="sideBar">
         <h3>Featured Film</h3>
